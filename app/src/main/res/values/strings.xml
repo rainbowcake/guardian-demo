@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Guardian News Demo</string>
+
+    <string name="content_description_article_image">Article thumbnail image</string>
+
+    <!-- Detail screen -->
+    <string name="detail_error_load_failed">Failed to load article</string>
+    <string name="detail_save_success">Saved</string>
+    <string name="detail_save_failed">Failed to save article</string>
+    <string name="detail_save_success_action">View saved</string>
+    <string name="detail_remove_success">Removed</string>
+</resources>
