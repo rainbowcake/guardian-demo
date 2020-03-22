@@ -10,6 +10,7 @@ import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailFragment
 import co.zsmb.rainbowcake.guardiandemo.ui.list.ListFragment
 import co.zsmb.rainbowcake.navigation.BackPressAware
 import co.zsmb.rainbowcake.navigation.navigator
+import co.zsmb.rainbowcake.navigation.popUntil
 import kotlinx.android.synthetic.main.fragment_list.newsList
 import kotlinx.android.synthetic.main.fragment_saved.*
 
@@ -55,7 +56,7 @@ class SavedFragment : RainbowCakeFragment<SavedViewState, SavedViewModel>(),
     }
 
     override fun onBackPressed(): Boolean {
-        return navigator?.popUntil(ListFragment::class) ?: false
+        return navigator?.popUntil<ListFragment>() ?: false
     }
 
 }
