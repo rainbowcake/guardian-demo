@@ -12,8 +12,6 @@ class BasicApiTest {
     fun `Check that API responds and response is parsed to models without error`() = runBlocking {
         val news = guardianApi.getNews()
 
-        println(news)
-
         assert(news.response.results.isNotEmpty())
     }
 
