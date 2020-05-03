@@ -14,8 +14,8 @@ class NewsInteractor @Inject constructor(
         return networkDataSource.getNewsItems()
     }
 
-    suspend fun getSavedNewsItems(): Flow<List<News>> {
-        return diskDataSource.getSavedNewsItems()
+    suspend fun getSavedNews(): Flow<List<News>> {
+        return diskDataSource.getSavedNews()
     }
 
     suspend fun saveNewsItem(id: String) {

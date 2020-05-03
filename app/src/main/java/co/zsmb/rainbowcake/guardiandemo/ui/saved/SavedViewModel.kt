@@ -1,8 +1,6 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.saved
 
 import co.zsmb.rainbowcake.base.JobViewModel
-import co.zsmb.rainbowcake.guardiandemo.domain.News
-import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedPresenter.SavedNewsItem
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
@@ -13,22 +11,13 @@ class SavedViewModel @Inject constructor(
     init {
         executeNonBlocking {
             savedPresenter.getSavedNews().collect { news ->
-                if (news.isEmpty()) {
-                    viewState = Empty
+                viewState = if (news.isEmpty()) {
+                    Empty
                 } else {
-                    viewState = SavedReady(news.map(this::toSavedNewsItem))
+                    SavedReady(news)
                 }
             }
         }
-    }
-
-    private fun toSavedNewsItem(news: News): SavedNewsItem {
-        return SavedNewsItem(
-            id = news.id,
-            headline = news.headline,
-            trail = news.trail,
-            thumbnailUrl = news.thumbnailUrl
-        )
     }
 
 }
