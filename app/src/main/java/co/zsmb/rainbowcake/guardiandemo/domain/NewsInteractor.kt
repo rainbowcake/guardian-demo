@@ -27,7 +27,7 @@ class NewsInteractor @Inject constructor(
         diskDataSource.removeSavedNewsItem(id)
     }
 
-    suspend fun getNewsItemById(id: String): News? {
+    suspend fun getNewsItemById(id: String): News {
         return diskDataSource.getSavedNewsItemById(id) ?: networkDataSource.getNewsItemById(id)
     }
 

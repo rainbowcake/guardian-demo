@@ -23,7 +23,7 @@ class NetworkDataSource @Inject constructor(
             }
     }
 
-    suspend fun getNewsItemById(id: String): News? {
+    suspend fun getNewsItemById(id: String): News {
         return guardianApi.getNewsById(id).response.content.let { newsContent ->
             News(
                 id = newsContent.id,

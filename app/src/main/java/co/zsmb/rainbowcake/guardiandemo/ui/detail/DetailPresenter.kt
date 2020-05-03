@@ -8,8 +8,8 @@ class DetailPresenter @Inject constructor(
     private val newsInteractor: NewsInteractor
 ) {
 
-    suspend fun loadArticle(articleId: String): DetailedNewsItem? = withIOContext {
-        newsInteractor.getNewsItemById(articleId)?.let { news ->
+    suspend fun loadArticle(articleId: String): DetailedNewsItem = withIOContext {
+        newsInteractor.getNewsItemById(articleId).let { news ->
             DetailedNewsItem(
                 id = news.id,
                 imageUrl = news.thumbnailUrl,

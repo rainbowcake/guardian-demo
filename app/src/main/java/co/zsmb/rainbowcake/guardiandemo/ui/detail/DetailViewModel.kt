@@ -15,12 +15,13 @@ class DetailViewModel @Inject constructor(
     object LoadFailedEvent : OneShotEvent
 
     fun loadArticle(articleId: String) = execute {
-        val news = detailPresenter.loadArticle(articleId)
-        if (news == null) {
-            // Slightly ugly error handling for demo purposes
+        val news = try {
+            detailPresenter.loadArticle(articleId)
+        } catch (e: IOException) {
             postEvent(LoadFailedEvent)
             return@execute
         }
+
         viewState = DetailReady(news)
     }
 
