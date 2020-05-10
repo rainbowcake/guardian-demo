@@ -35,6 +35,6 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNytAPI(retrofit: Retrofit): GuardianApi = retrofit.create()
+    fun provideGuardianApi(retrofit: Retrofit): GuardianApi = retrofit.create()
 
 }
