@@ -1,13 +1,13 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.detail
 
-import co.zsmb.rainbowcake.base.JobViewModel
 import co.zsmb.rainbowcake.base.OneShotEvent
+import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import java.io.IOException
 import javax.inject.Inject
 
 class DetailViewModel @Inject constructor(
     private val detailPresenter: DetailPresenter
-) : JobViewModel<DetailViewState>(Loading) {
+) : RainbowCakeViewModel<DetailViewState>(Loading) {
 
     object SavedEvent : OneShotEvent
     object RemovedEvent : OneShotEvent

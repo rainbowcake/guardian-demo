@@ -1,12 +1,12 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.list
 
-import co.zsmb.rainbowcake.base.JobViewModel
+import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import java.io.IOException
 import javax.inject.Inject
 
 class ListViewModel @Inject constructor(
     private val listPresenter: ListPresenter
-) : JobViewModel<ListViewState>(Loading) {
+) : RainbowCakeViewModel<ListViewState>(Loading) {
 
     init {
         execute { loadNews() }

@@ -1,12 +1,12 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.saved
 
-import co.zsmb.rainbowcake.base.JobViewModel
+import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 class SavedViewModel @Inject constructor(
     private val savedPresenter: SavedPresenter
-) : JobViewModel<SavedViewState>(Loading) {
+) : RainbowCakeViewModel<SavedViewState>(Loading) {
 
     init {
         executeNonBlocking {
