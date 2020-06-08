@@ -12,7 +12,7 @@ class DiskDataSource @Inject constructor(
     private val newsDao: NewsDao
 ) {
 
-    suspend fun getSavedNews(): Flow<List<News>> {
+    fun getSavedNews(): Flow<List<News>> {
         return newsDao.getAllNewsItems().map { news -> news.map(RoomNewsItem::toNews) }
     }
 
