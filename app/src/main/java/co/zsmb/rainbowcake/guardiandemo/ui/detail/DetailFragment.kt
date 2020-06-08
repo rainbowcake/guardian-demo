@@ -7,10 +7,10 @@ import android.widget.Toast
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
-import co.zsmb.rainbowcake.extensions.applyArgs
 import co.zsmb.rainbowcake.guardiandemo.R
 import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailViewModel.*
 import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedFragment
+import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.extensions.requireString
 import co.zsmb.rainbowcake.navigation.navigator
 import com.bumptech.glide.Glide
