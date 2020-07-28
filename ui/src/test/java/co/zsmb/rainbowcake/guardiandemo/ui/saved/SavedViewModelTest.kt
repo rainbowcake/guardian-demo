@@ -1,6 +1,10 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.saved
 
-import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedPresenter.SavedNewsItem
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.Empty
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.SavedPresenter
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.SavedPresenter.SavedNewsItem
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.SavedReady
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.SavedViewModel
 import co.zsmb.rainbowcake.test.assertObserved
 import co.zsmb.rainbowcake.test.base.ViewModelTest
 import co.zsmb.rainbowcake.test.observeStateAndEvents

@@ -7,8 +7,12 @@ import android.widget.Toast
 import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailReady
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailViewModel
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailViewModel.*
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailViewState
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.Loading
 import co.zsmb.rainbowcake.guardiandemo.ui.R
-import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailViewModel.*
 import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedFragment
 import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.extensions.requireString

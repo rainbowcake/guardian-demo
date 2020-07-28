@@ -1,6 +1,10 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.detail
 
-import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailPresenter.DetailedNewsItem
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailPresenter
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailPresenter.DetailedNewsItem
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailReady
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.DetailViewModel
+import co.zsmb.rainbowcake.guardiandemo.presentation.detail.Loading
 import co.zsmb.rainbowcake.test.assertObserved
 import co.zsmb.rainbowcake.test.base.ViewModelTest
 import co.zsmb.rainbowcake.test.observeStateAndEvents

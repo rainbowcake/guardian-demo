@@ -1,7 +1,7 @@
 package co.zsmb.rainbowcake.guardiandemo.data.disk
 
-import co.zsmb.rainbowcake.guardiandemo.News
-import co.zsmb.rainbowcake.guardiandemo.data.disk.entities.RoomNewsItem
+import co.zsmb.rainbowcake.guardiandemo.data.model.News
+import co.zsmb.rainbowcake.guardiandemo.local.entities.RoomNewsItem
 
 fun News.toRoomNewsItem(): RoomNewsItem {
     return RoomNewsItem(

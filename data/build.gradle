@@ -3,13 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-Properties localProps = new Properties()
-if (project.rootProject.file('local.properties').canRead()) {
-    localProps.load(new FileInputStream(project.rootProject.file('local.properties')))
-} else {
-    System.err.println("local.properties file is missing, please create it.")
-}
-
 android {
     compileSdkVersion 29
     buildToolsVersion "30.0.0"
@@ -19,9 +12,6 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
-        buildConfigField 'String', 'GUARDIAN_API_BASE_URL', "\"https://content.guardianapis.com/\""
-        buildConfigField 'String', 'GUARDIAN_API_KEY', "\"" + localProps['guardian.apikey'] + "\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -50,6 +40,9 @@ android {
 }
 
 dependencies {
+    implementation project(':remote')
+    implementation project(':local')
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

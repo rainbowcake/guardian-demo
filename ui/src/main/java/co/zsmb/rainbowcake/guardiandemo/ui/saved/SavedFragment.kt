@@ -5,6 +5,7 @@ import android.view.View
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.extensions.exhaustive
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.*
 import co.zsmb.rainbowcake.guardiandemo.ui.R
 import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailFragment
 import co.zsmb.rainbowcake.guardiandemo.ui.list.ListFragment

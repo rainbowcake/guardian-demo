@@ -1,7 +1,8 @@
 package co.zsmb.rainbowcake.guardiandemo.data.disk
 
-import co.zsmb.rainbowcake.guardiandemo.News
-import co.zsmb.rainbowcake.guardiandemo.data.disk.entities.RoomNewsItem
+import co.zsmb.rainbowcake.guardiandemo.data.model.News
+import co.zsmb.rainbowcake.guardiandemo.local.NewsDao
+import co.zsmb.rainbowcake.guardiandemo.local.entities.RoomNewsItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

@@ -8,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import co.zsmb.rainbowcake.guardiandemo.presentation.saved.SavedPresenter.SavedNewsItem
 import co.zsmb.rainbowcake.guardiandemo.ui.R
-import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedPresenter.SavedNewsItem
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_news.view.*
 

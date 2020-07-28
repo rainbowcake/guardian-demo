@@ -1,6 +1,7 @@
 package co.zsmb.rainbowcake.guardiandemo.data.network
 
-import co.zsmb.rainbowcake.guardiandemo.News
+import co.zsmb.rainbowcake.guardiandemo.data.model.News
+import co.zsmb.rainbowcake.guardiandemo.remote.GuardianApi
 import javax.inject.Inject
 import javax.inject.Singleton
 

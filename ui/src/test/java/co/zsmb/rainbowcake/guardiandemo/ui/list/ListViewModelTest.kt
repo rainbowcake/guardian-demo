@@ -1,6 +1,7 @@
 package co.zsmb.rainbowcake.guardiandemo.ui.list
 
-import co.zsmb.rainbowcake.guardiandemo.ui.list.ListPresenter.NewsItem
+import co.zsmb.rainbowcake.guardiandemo.presentation.list.*
+import co.zsmb.rainbowcake.guardiandemo.presentation.list.ListPresenter.NewsItem
 import co.zsmb.rainbowcake.test.assertObserved
 import co.zsmb.rainbowcake.test.base.ViewModelTest
 import co.zsmb.rainbowcake.test.observeStateAndEvents

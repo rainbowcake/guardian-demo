@@ -1,6 +1,6 @@
 package co.zsmb.rainbowcake.guardiandemo.domain
 
-import co.zsmb.rainbowcake.guardiandemo.News
+import co.zsmb.rainbowcake.guardiandemo.data.model.News
 import co.zsmb.rainbowcake.guardiandemo.data.disk.DiskDataSource
 import co.zsmb.rainbowcake.guardiandemo.data.network.NetworkDataSource
 import kotlinx.coroutines.flow.Flow
