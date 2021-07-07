@@ -49,23 +49,20 @@ class ListFragment : RainbowCakeFragment<ListViewState, ListViewModel>(), NewsAd
 
     override fun render(viewState: ListViewState) {
         TransitionManager.beginDelayedTransition(listFragmentRoot)
+
+        loadingIndicator.isVisible = viewState == Loading
+        newsList.isVisible = viewState is ListReady
+        errorGroup.isVisible = viewState == NetworkError
+
         when (viewState) {
             Loading -> {
-                loadingIndicator.isVisible = true
-                newsList.isVisible = false
-                errorGroup.isVisible = false
+
             }
             is ListReady -> {
                 newsAdapter.submitList(viewState.news)
-                loadingIndicator.isVisible = false
-                newsList.isVisible = true
-                errorGroup.isVisible = false
             }
             NetworkError -> {
                 newsAdapter.submitList(null)
-                loadingIndicator.isVisible = false
-                newsList.isVisible = false
-                errorGroup.isVisible = true
             }
         }.exhaustive
     }
