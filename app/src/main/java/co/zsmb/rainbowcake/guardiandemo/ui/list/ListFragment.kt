@@ -9,10 +9,10 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.extensions.exhaustive
 import co.zsmb.rainbowcake.guardiandemo.R
+import co.zsmb.rainbowcake.guardiandemo.databinding.FragmentListBinding
 import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailFragment
 import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedFragment
 import co.zsmb.rainbowcake.navigation.navigator
-import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : RainbowCakeFragment<ListViewState, ListViewModel>(), NewsAdapter.Listener {
 
@@ -21,23 +21,33 @@ class ListFragment : RainbowCakeFragment<ListViewState, ListViewModel>(), NewsAd
 
     private lateinit var newsAdapter: NewsAdapter
 
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        _binding = FragmentListBinding.bind(view)
+
         newsAdapter = NewsAdapter()
         newsAdapter.listener = this
-        newsList.adapter = newsAdapter
-        newsList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+        binding.newsList.adapter = newsAdapter
+        binding.newsList.addItemDecoration(
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
-        retryButton.setOnClickListener {
+        binding.retryButton.setOnClickListener {
             viewModel.reload()
         }
-        viewSavedButton.setOnClickListener {
+        binding.viewSavedButton.setOnClickListener {
             navigator?.add(SavedFragment())
         }
 
-        toolbar.inflateMenu(R.menu.menu_list)
-        toolbar.setOnMenuItemClickListener { item ->
+        binding.toolbar.inflateMenu(R.menu.menu_list)
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_view_saved -> {
                     navigator?.add(SavedFragment())
@@ -47,25 +57,30 @@ class ListFragment : RainbowCakeFragment<ListViewState, ListViewModel>(), NewsAd
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     override fun render(viewState: ListViewState) {
-        TransitionManager.beginDelayedTransition(listFragmentRoot)
+        TransitionManager.beginDelayedTransition(binding.listFragmentRoot)
         when (viewState) {
             Loading -> {
-                loadingIndicator.isVisible = true
-                newsList.isVisible = false
-                errorGroup.isVisible = false
+                binding.loadingIndicator.isVisible = true
+                binding.newsList.isVisible = false
+                binding.errorGroup.isVisible = false
             }
             is ListReady -> {
                 newsAdapter.submitList(viewState.news)
-                loadingIndicator.isVisible = false
-                newsList.isVisible = true
-                errorGroup.isVisible = false
+                binding.loadingIndicator.isVisible = false
+                binding.newsList.isVisible = true
+                binding.errorGroup.isVisible = false
             }
             NetworkError -> {
                 newsAdapter.submitList(null)
-                loadingIndicator.isVisible = false
-                newsList.isVisible = false
-                errorGroup.isVisible = true
+                binding.loadingIndicator.isVisible = false
+                binding.newsList.isVisible = false
+                binding.errorGroup.isVisible = true
             }
         }.exhaustive
     }

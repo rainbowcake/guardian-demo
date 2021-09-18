@@ -4,14 +4,12 @@ import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import co.zsmb.rainbowcake.guardiandemo.R
+import co.zsmb.rainbowcake.guardiandemo.databinding.ItemSavedNewsBinding
 import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedPresenter.SavedNewsItem
-import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_news.view.*
+import coil.load
 
 class SavedNewsAdapter :
     ListAdapter<SavedNewsItem, SavedNewsAdapter.ViewHolder>(SavedNewsItemComparator) {
@@ -29,9 +27,7 @@ class SavedNewsAdapter :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.thumbnailImage
-        val headline: TextView = itemView.headlineText
-        val trail: TextView = itemView.trailText
+        private val binding = ItemSavedNewsBinding.bind(itemView)
 
         private var news: SavedNewsItem? = null
 
@@ -46,17 +42,13 @@ class SavedNewsAdapter :
         fun bind(item: SavedNewsItem) {
             news = item
 
-            headline.text = item.headline
-            trail.text = Html.fromHtml(item.trail)
-
-            Glide.with(image)
-                .load(item.thumbnailUrl)
-                .into(image)
+            binding.headlineText.text = item.headline
+            binding.trailText.text = Html.fromHtml(item.trail)
+            binding.thumbnailImage.load(item.thumbnailUrl)
         }
     }
 
     interface Listener {
         fun onNewsItemSelected(newsId: String)
     }
-
 }

@@ -8,14 +8,14 @@ import co.zsmb.rainbowcake.base.OneShotEvent
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.guardiandemo.R
+import co.zsmb.rainbowcake.guardiandemo.databinding.FragmentDetailBinding
 import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailViewModel.*
 import co.zsmb.rainbowcake.guardiandemo.ui.saved.SavedFragment
 import co.zsmb.rainbowcake.navigation.extensions.applyArgs
 import co.zsmb.rainbowcake.navigation.extensions.requireString
 import co.zsmb.rainbowcake.navigation.navigator
-import com.bumptech.glide.Glide
+import coil.load
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
 
@@ -29,18 +29,23 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
         }
     }
 
+    private lateinit var newsId: String
+
     override fun provideViewModel() = getViewModelFromFactory()
     override fun getViewResource() = R.layout.fragment_detail
 
-    private lateinit var newsId: String
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initArgs()
 
-        toolbar.inflateMenu(R.menu.menu_detail_saved)
-        toolbar.setOnMenuItemClickListener { item ->
+        _binding = FragmentDetailBinding.bind(view)
+
+        binding.toolbar.inflateMenu(R.menu.menu_detail_saved)
+        binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
                     viewModel.toggleSaved(newsId)
@@ -48,6 +53,11 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
             }
             true
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun initArgs() {
@@ -67,16 +77,13 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
             is DetailReady -> {
                 val news = viewState.news
 
-                titleText.text = news.title
-                byline.text = Html.fromHtml(news.byline)
-                contentText.text = Html.fromHtml(news.content)
-
-                Glide.with(articleImage)
-                    .load(news.imageUrl)
-                    .into(articleImage)
+                binding.titleText.text = news.title
+                binding.byline.text = Html.fromHtml(news.byline)
+                binding.contentText.text = Html.fromHtml(news.content)
+                binding.articleImage.load(news.imageUrl)
 
                 val iconRes = if (news.isSaved) R.drawable.ic_star else R.drawable.ic_star_border
-                toolbar.menu.getItem(0).setIcon(iconRes)
+                binding.toolbar.menu.getItem(0).setIcon(iconRes)
             }
         }
     }
@@ -94,7 +101,7 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
             }
             SavedEvent -> {
                 Snackbar.make(
-                    detailFragmentRoot,
+                    binding.detailFragmentRoot,
                     R.string.detail_save_success,
                     Snackbar.LENGTH_SHORT
                 )
@@ -105,14 +112,14 @@ class DetailFragment : RainbowCakeFragment<DetailViewState, DetailViewModel>() {
             }
             RemovedEvent -> {
                 Snackbar.make(
-                    detailFragmentRoot,
+                    binding.detailFragmentRoot,
                     R.string.detail_remove_success,
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
             SaveFailedEvent -> {
                 Snackbar.make(
-                    detailFragmentRoot,
+                    binding.detailFragmentRoot,
                     R.string.detail_save_failed,
                     Snackbar.LENGTH_SHORT
                 ).show()

@@ -6,13 +6,12 @@ import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
 import co.zsmb.rainbowcake.extensions.exhaustive
 import co.zsmb.rainbowcake.guardiandemo.R
+import co.zsmb.rainbowcake.guardiandemo.databinding.FragmentSavedBinding
 import co.zsmb.rainbowcake.guardiandemo.ui.detail.DetailFragment
 import co.zsmb.rainbowcake.guardiandemo.ui.list.ListFragment
 import co.zsmb.rainbowcake.navigation.BackPressAware
 import co.zsmb.rainbowcake.navigation.navigator
 import co.zsmb.rainbowcake.navigation.popUntil
-import kotlinx.android.synthetic.main.fragment_list.newsList
-import kotlinx.android.synthetic.main.fragment_saved.*
 
 class SavedFragment : RainbowCakeFragment<SavedViewState, SavedViewModel>(),
     SavedNewsAdapter.Listener, BackPressAware {
@@ -28,25 +27,35 @@ class SavedFragment : RainbowCakeFragment<SavedViewState, SavedViewModel>(),
 
     private lateinit var savedNewsAdapter: SavedNewsAdapter
 
+    private var _binding: FragmentSavedBinding? = null
+    private val binding get() = _binding!!
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        _binding = FragmentSavedBinding.bind(view)
+
         savedNewsAdapter = SavedNewsAdapter()
         savedNewsAdapter.listener = this
-        newsList.adapter = savedNewsAdapter
+        binding.newsList.adapter = savedNewsAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun render(viewState: SavedViewState) {
         when (viewState) {
             Loading -> {
-                viewFlipper.displayedChild = Flipper.LOADING
+                binding.viewFlipper.displayedChild = Flipper.LOADING
             }
             is SavedReady -> {
-                viewFlipper.displayedChild = Flipper.CONTENT
+                binding.viewFlipper.displayedChild = Flipper.CONTENT
                 savedNewsAdapter.submitList(viewState.news)
             }
             Empty -> {
-                viewFlipper.displayedChild = Flipper.EMPTY
+                binding.viewFlipper.displayedChild = Flipper.EMPTY
             }
         }.exhaustive
     }
