@@ -45,12 +45,12 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'com.google.android.material:material:1.4.0'
 
     // RainbowCake
-    def rainbow_cake_version = '1.5.0'
+    def rainbow_cake_version = '1.6.0'
     implementation "co.zsmb:rainbow-cake-core:$rainbow_cake_version"
     implementation "co.zsmb:rainbow-cake-dagger:$rainbow_cake_version"
     implementation "co.zsmb:rainbow-cake-navigation:$rainbow_cake_version"
